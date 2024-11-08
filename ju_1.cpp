@@ -13,11 +13,28 @@ void print_arr(int ** A, int size) {
 
 }
 
+// put numbers to 2D square array
+void fill_arr(int ** A, int size) {
 
+    if (size < 12) {
+        cout << "Size < 12. Skip fill_arr()" << endl;
+        return;
+    }
+    int *p = &A[1][0];
+    *p++ = 2;*p++ = 1;*p++ = 1;*p++ = 1;*p++ = 0;*p++ = 4;*p++ = 0;*p++ = 4;*p++ = 2;*p++ = 0;*p++ = 2;*p++ = 0; 
+}
 
+// do command N
+void command_n(int ** A, int size) {
+
+    cout << " =N" << endl;
+    int x,y,w; 
+    cin >> x >> y >> w;
+    A[x-1][y-1] = w;
+}
 
  int main(){
-    int M; cin >> M;
+    int M=12; //cin >> M;
 
     // Array of pointers - columns
     int **A = new int* [M];
@@ -27,8 +44,8 @@ void print_arr(int ** A, int size) {
         memset(A[i], 0, sizeof(int)*M);
     }
 
-    A[1][0] = 2;A[1][1] = 1;A[1][2] = 1;A[1][3] = 1;A[1][4] = 0;A[1][5] =4 ;A[1][6] = 0;A[1][7] = 4;A[1][8] =2 ;A[1][9] = 0;A[1][10] = 2;A[1][11] =0 ;
-
+    
+    fill_arr(A,M);
     print_arr(A,M);
 
     char command;
@@ -36,10 +53,7 @@ void print_arr(int ** A, int size) {
 
 
         if( command == 'N'){ 
-            cout << " =N" << endl;
-            int x,y,w; cin >> x >> y >> w;
-            A[x-1][y-1] = w;
-
+            command_n(A,M);
         }
          
         if ( command == 'L'){
