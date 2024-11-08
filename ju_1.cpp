@@ -93,6 +93,36 @@ void move_r(int ** A, int size) {
     }
 }
 
+// move numbers to the top
+void move_t(int ** A, int size) {
+
+    for (int j = 0 ; j < size; j++ ) {    
+        int shift = 0;
+        for (int i = 0 ; i < size; i++ ) {
+            if (A[i][j] != 0){
+                A[shift][j] = A[i][j];       // move to the top
+                if (shift != i) A[i][j] = 0; // clear if it's not the same 
+                shift++;
+            }
+        }
+    }
+}
+
+// move numbers to the bottom
+void move_b(int ** A, int size) {
+
+    for (int j = 0 ; j < size; j++ ) {    
+        int shift = size-1;
+        for (int i = size-1 ; i >= 0; i-- ) {
+            if (A[i][j] != 0){
+                A[shift][j] = A[i][j];       // move to the bottom
+                if (shift != i) A[i][j] = 0; // clear if it's not the same 
+                shift--;
+            }
+        }
+    }
+}
+
 
 int main() {
     int M=12; //cin >> M;
@@ -123,7 +153,16 @@ int main() {
 
         if ( command == 'R'){
             move_r(A,M);
-        }        
+        } 
+
+        if ( command == 'T'){
+            move_t(A,M);
+        } 
+
+        if ( command == 'B'){
+            move_b(A,M);
+        } 
+
 
         print_arr(A,M);
     }
