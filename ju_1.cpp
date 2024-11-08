@@ -33,7 +33,24 @@ void command_n(int ** A, int size) {
     A[x-1][y-1] = w;
 }
 
- int main(){
+
+// move numbers to the left
+void move_l(int ** A, int size) {
+
+    for (int i = 0 ; i < size; i++ ) {    
+        int shift = 0;
+        for (int j = 0 ; j < size; j++ ) {
+            if (A[i][j] != 0){
+                A[i][shift] = A[i][j];       // move to the left
+                if (shift != j) A[i][j] = 0; // clear if it's not the same 
+                shift++;
+            }
+        }
+    }
+}
+
+
+int main() {
     int M=12; //cin >> M;
 
     // Array of pointers - columns
@@ -49,7 +66,7 @@ void command_n(int ** A, int size) {
     print_arr(A,M);
 
     char command;
-    while(cin >> command && command != 'K' ){ 
+    while(cin >> command && command != 'K' ) { 
 
 
         if( command == 'N'){ 
@@ -57,39 +74,8 @@ void command_n(int ** A, int size) {
         }
          
         if ( command == 'L'){
-            cout << " =L" << endl;
-            int flag = 0;
-           while (1){
-                for (int i = 0 ; i<M ; i++ ){               
-                    flag = 0;
-                    for (int j = 0 ; j<M ; j++ ){
-                            if (A[i][j] != 0){
-                                A[i][flag] = A[i][j];
-                                flag++;
-                            }
-                    }
-                    for (int j=flag ; j<M ; j++) A[i][j] = 0;
-                }
-                
-                flag = 0; 
-                for (int n = 0 ; n<M ; n++){
-                    for (int i = 1; i<M ; i++ ){
-                        if (A[n][i-1] != 0 && A[n][i] != 0)
-                            if (A[n][i]%A[n][i-1] == 0 ){
-                                A[n][i] = A[n][i]-A[n][i-1];  
-                                A[n][i-1] = A[n][i-1]*2;
-                                flag++;
-                            }
-                     }
-                }
-                if (flag == 0){ break;} 
-             }
-            
-
-
+            move_l(A,M);
         }
-         
-
 
         print_arr(A,M);
     }
