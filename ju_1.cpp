@@ -49,6 +49,21 @@ void move_l(int ** A, int size) {
     }
 }
 
+// move numbers to the right
+void move_r(int ** A, int size) {
+
+    for (int i = 0 ; i < size; i++ ) {    
+        int shift = size-1;
+        for (int j = size-1 ; j >= 0; j-- ) {
+            if (A[i][j] != 0){
+                A[i][shift] = A[i][j];       // move to the right
+                if (shift != j) A[i][j] = 0; // clear if it's not the same 
+                shift--;
+            }
+        }
+    }
+}
+
 
 int main() {
     int M=12; //cin >> M;
@@ -76,6 +91,10 @@ int main() {
         if ( command == 'L'){
             move_l(A,M);
         }
+
+        if ( command == 'R'){
+            move_r(A,M);
+        }        
 
         print_arr(A,M);
     }
