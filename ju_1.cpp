@@ -20,8 +20,37 @@ void fill_arr(int ** A, int size) {
         cout << "Size < 12. Skip fill_arr()" << endl;
         return;
     }
-    int *p = &A[1][0];
-    *p++ = 2;*p++ = 1;*p++ = 1;*p++ = 1;*p++ = 0;*p++ = 4;*p++ = 0;*p++ = 4;*p++ = 2;*p++ = 0;*p++ = 2;*p++ = 0; 
+    // fill the 2nd row
+    int i = 1;
+    int j = 0;
+    A[i][j++] = 2;
+    A[i][j++] = 1;
+    A[i][j++] = 1;
+    A[i][j++] = 1;
+    A[i][j++] = 0;
+    A[i][j++] = 4;
+    A[i][j++] = 0;
+    A[i][j++] = 4;
+    A[i][j++] = 2;
+    A[i][j++] = 0;
+    A[i][j++] = 2;
+    A[i][j++] = 0;
+
+    // fill the 3rd column
+    i = 0;
+    j = 2;
+    A[i++][j] = 2;
+    A[i++][j] = 3;
+    A[i++][j] = 1;
+    A[i++][j] = 0;
+    A[i++][j] = 0;
+    A[i++][j] = 4;
+    A[i++][j] = 3;
+    A[i++][j] = 2;
+    A[i++][j] = 0;
+    A[i++][j] = 1;
+    A[i++][j] = 1;
+    A[i++][j] = 0;
 }
 
 // do command N
